@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupa Invoice Downloader</title>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        button {
+            background-color: #ff5500;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            padding: 0.6em 1.2em;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff7733;
+        }
+
+        .top-right {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            color: #ff5500;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        h1 {
+            color: #ff5500;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #444;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-right">Powered by Farried Joemratie</div>
+
+    <h1>📄 Coupa Invoice Downloader</h1>
+    <p>Upload your invoice CSV and download invoice PDFs in bulk from Coupa.</p>
+
+    <hr>
+
+    <h2>📂 Upload Invoice CSV</h2>
+    <input type="file" id="csvFile" accept=".csv, .txt"><br><br>
+    <button onclick="processCSV()">Process CSV</button>
+
+    <hr>
+
+    <h2>💾 Download Ready</h2>
+    <p>Click the button to download all invoices as a ZIP file.</p>
+    <button disabled id="zipButton">📦 Download ZIP</button>
+
+    <hr>
+
+    <footer>
+        <p>© 2025 Coupa Invoice Downloader | Created with ❤️ by Farried Joemratie</p>
+    </footer>
+
+    <script>
+        function processCSV() {
+            const fileInput = document.getElementById('csvFile');
+            const zipButton = document.getElementById('zipButton');
+
+            if (fileInput.files.length === 0) {
+                alert("Please select a CSV file.");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const csvContent = event.target.result;
+
+                // TODO: Add your real CSV parsing logic here
+                console.log(csvContent);
+
+                alert("CSV processed successfully!");
+
+                // Enable ZIP download button
+                zipButton.disabled = false;
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+
+</body>
+
+</html>
