@@ -1,0 +1,5 @@
+name: coupa-invoice-downloader
+dependencies:
+  - python=3.10
+  - requests
+  - pandas
