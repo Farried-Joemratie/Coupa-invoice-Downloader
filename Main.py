@@ -110,7 +110,7 @@ if not st.session_state.token:
                 st.warning(
                     "⚠️ Connected but no token returned. Check API scope.")
     except Exception as e:
-        st.error(f"❌ Failed to connect to Coupa: {e}")
+        st.error()
 
 # --- CSV UPLOAD ---
 st.markdown("---")
