@@ -100,8 +100,6 @@ if not st.session_state.token:
             headers = {"Content-Type": "application/x-www-form-urlencoded"}
             response = requests.post(token_url, auth=(IDENTIFIER, SECRET),
                                      data=token_data, headers=headers)
-            
-
             token = response.json().get("access_token")
             if token:
                 st.session_state.token = token
