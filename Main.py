@@ -90,7 +90,7 @@ if "token" not in st.session_state:
 if not st.session_state.token:
     try:
         if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
-            st.error("❌ Missing Coupa credentials. Please check your .env file.")
+            st.error()
         else:
             token_url = f"https://{COUPA_INSTANCE}.coupahost.com/oauth2/token"
             token_data = {
