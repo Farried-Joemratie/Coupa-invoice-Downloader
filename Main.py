@@ -107,10 +107,9 @@ if not st.session_state.token:
                 st.session_state.token = token
                 st.success()
             else:
-                st.warning(
-                    "⚠️ Connected but no token returned. Check API scope.")
+                st.warning()
     except Exception as e:
-        
+        st.error()
 
 # --- CSV UPLOAD ---
 st.markdown("---")
