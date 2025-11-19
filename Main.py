@@ -86,32 +86,36 @@ if "token" not in st.session_state:
     st.session_state.token = None
     
 
-# --- AUTO-CONNECT TO COUPA ---
-if not st.session_state.token:
-    try:
-        if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
-            st.error("❌ Missing Coupa credentials. Please check your .env file.")
-        else:
-            st.info("🔗 Connecting to Coupa automatically...")
-            token_url = f"https://{COUPA_INSTANCE}.coupahost.com/oauth2/token"
-            token_data = {
-                "grant_type": "client_credentials",
-                "scope": "core.invoice.read"
-            }
-            headers = {"Content-Type": "application/x-www-form-urlencoded"}
-            response = requests.post(token_url, auth=(IDENTIFIER, SECRET),
-                                     data=token_data, headers=headers)
-            response.raise_for_status()
+# Set `show_auto_connect` to False to hide this section when the app opens
+show_auto_connect = False  # Change to True if you want to display it initially
 
-            token = response.json().get("access_token")
-            if token:
-                st.session_state.token = token
-                st.success("✅ Connected to Coupa successfully!")
+if show_auto_connect:  # Wrap the code block in this condition
+    # --- AUTO-CONNECT TO COUPA ---
+    if not st.session_state.token:
+        try:
+            if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
+                st.error("❌ Missing Coupa credentials. Please check your .env file.")
             else:
-                st.warning(
-                    "⚠️ Connected but no token returned. Check API scope.")
-    except Exception as e:
-        st.error(f"❌ Failed to connect to Coupa: {e}")
+                st.info("🔗 Connecting to Coupa automatically...")
+                token_url = f"https://{COUPA_INSTANCE}.coupahost.com/oauth2/token"
+                token_data = {
+                    "grant_type": "client_credentials",
+                    "scope": "core.invoice.read"
+                }
+                headers = {"Content-Type": "application/x-www-form-urlencoded"}
+                response = requests.post(token_url, auth=(IDENTIFIER, SECRET),
+                                         data=token_data, headers=headers)
+                response.raise_for_status()
+
+                token = response.json().get("access_token")
+                if token:
+                    st.session_state.token = token
+                    st.success("✅ Connected to Coupa successfully!")
+                else:
+                    st.warning(
+                        "⚠️ Connected but no token returned. Check API scope.")
+        except Exception as e:
+            st.error(f"❌ Failed to connect to Coupa: {e}")
 
 
 # --- CSV UPLOAD ---
