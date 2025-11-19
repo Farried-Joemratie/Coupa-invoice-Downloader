@@ -105,9 +105,7 @@ if not st.session_state.token:
             token = response.json().get("access_token")
             if token:
                 st.session_state.token = token
-                st.success()
-            else:
-                st.warning()
+
 
 
 # --- CSV UPLOAD ---
