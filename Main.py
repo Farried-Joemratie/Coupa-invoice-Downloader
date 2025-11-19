@@ -92,7 +92,7 @@ if "token" not in st.session_state:
        "grant_type": "client_credentials",
        "scope": "core.invoice.read"
        }
-       headers = {"Content-Type": "application/x-www-form-urlencoded"}
+       headers = {"Content-Type": "application/json"}
        response = requests.post(token_url, auth=(IDENTIFIER, SECRET),
                      data=token_data, headers=headers)
       response.raise_for_status()
