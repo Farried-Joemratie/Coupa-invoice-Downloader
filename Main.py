@@ -92,7 +92,7 @@ if not st.session_state.token:
         if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
             st.error("❌ Missing Coupa credentials. Please check your .env file.")
         else:
-            st.info("🔗 Connecting to Coupa automatically...")
+            st.info()
             token_url = f"https://{COUPA_INSTANCE}.coupahost.com/oauth2/token"
             token_data = {
                 "grant_type": "client_credentials",
@@ -106,7 +106,7 @@ if not st.session_state.token:
             token = response.json().get("access_token")
             if token:
                 st.session_state.token = token
-                st.success("✅ Connected to Coupa successfully!")
+                st.success()
             else:
                 st.warning(
                     "⚠️ Connected but no token returned. Check API scope.")
