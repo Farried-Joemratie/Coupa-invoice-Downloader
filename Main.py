@@ -87,23 +87,17 @@ if "token" not in st.session_state:
     
 
 # --- AUTO-CONNECT TO COUPA ---
-if not st.session_state.token:
-        if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
-            st.error("❌ Missing Coupa credentials. Please check your .env file.")
-        else:
-            st.info("🔗 Connecting to Coupa automatically...")
-            token_url = f"https://{COUPA_INSTANCE}.coupahost.com/oauth2/token"
-            token_data = {
-                "grant_type": "client_credentials",
-                "scope": "core.invoice.read"
-            }
-            headers = {"Content-Type": "application/x-www-form-urlencoded"}
-            response = requests.post(token_url, auth=(IDENTIFIER, SECRET),
-                                     data=token_data, headers=headers)
-            response.raise_for_status()
+    token_url = f"https://{COUPA_INSTANCE}.coupahost.com/oauth2/token"
+    token_data = {
+       "grant_type": "client_credentials",
+       "scope": "core.invoice.read"
+       }
+       headers = {"Content-Type": "application/x-www-form-urlencoded"}
+       response = requests.post(token_url, auth=(IDENTIFIER, SECRET),
+                     data=token_data, headers=headers)
+      response.raise_for_status()
 
             token = response.json().get("access_token")
-
 
 
 # --- CSV UPLOAD ---
