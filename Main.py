@@ -88,7 +88,6 @@ if "token" not in st.session_state:
 
 # --- AUTO-CONNECT TO COUPA ---
 if not st.session_state.token:
-    try:
         if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
             st.error("❌ Missing Coupa credentials. Please check your .env file.")
         else:
