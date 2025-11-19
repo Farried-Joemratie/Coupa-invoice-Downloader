@@ -86,10 +86,6 @@ if "token" not in st.session_state:
     st.session_state.token = None
     
 
-# Set `show_auto_connect` to False to hide this section when the app opens
-show_auto_connect = False  # Change to True if you want to display it initially
-
-if show_auto_connect:  # Wrap the code block in this condition
     # --- AUTO-CONNECT TO COUPA ---
     if not st.session_state.token:
         try:
