@@ -86,8 +86,12 @@ if "token" not in st.session_state:
     st.session_state.token = None
     
 
-    # --- AUTO-CONNECT TO COUPA ---
-    if not st.session_state.token:
+# Streamlit app
+def main():
+    st.title("Coupa Auto-Connect")
+
+    # Auto-connect to Coupa
+    if 'token' not in st.session_state:
         try:
             if not IDENTIFIER or not SECRET or not COUPA_INSTANCE:
                 st.error("❌ Missing Coupa credentials. Please check your .env file.")
@@ -112,6 +116,9 @@ if "token" not in st.session_state:
                         "⚠️ Connected but no token returned. Check API scope.")
         except Exception as e:
             st.error(f"❌ Failed to connect to Coupa: {e}")
+
+if __name__ == "__main__":
+    main()
 
 
 # --- CSV UPLOAD ---
