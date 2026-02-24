@@ -6,10 +6,10 @@ import io
 import zipfile
 import re
 from datetime import datetime
-from dotenv import load_dotenv
+import dotenv
 
 # --- LOAD ENV VARIABLES ---
-load_dotenv()
+dotenv()
 
 IDENTIFIER = os.getenv("IDENTIFIER")
 SECRET = os.getenv("SECRET")
