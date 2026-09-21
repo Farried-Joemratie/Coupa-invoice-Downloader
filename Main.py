@@ -236,4 +236,4 @@ if st.session_state.zip_buffer:
 
 # --- FOOTER ---
 st.markdown("---")
-st.caption("© 2025 Coupa Invoice Downloader | Created with by Farried Joemratie")
+st.caption("© 2025 Coupa Invoice Downloader | Created by Farried Joemratie")
